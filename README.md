@@ -1,12 +1,12 @@
 # bus-delay-ml
 
-Prevê atraso de ônibus com características da rota, horário, clima, tráfego e carga de passageiros usando histórico sintético.
+Predicts bus delays from route, time, weather, traffic, and passenger-load features.
 
-## Dados
+## Data
 
-O pipeline gera dados sintéticos determinísticos localmente, identificados como sintéticos em `pipeline.py`. Nenhum dado privado ou download externo é necessário. A divisão e a semente de avaliação são descritas junto às métricas abaixo.
+Deterministic synthetic trip data is generated locally in `pipeline.py`. No private data or external download is required.
 
-## Instalação e execução
+## Install and run
 
 ```bash
 python -m venv .venv
@@ -18,8 +18,10 @@ python cli.py train --model model.joblib
 python cli.py predict --model model.joblib
 ```
 
-## Métricas obtidas
+## Evaluation results
 
-Seed 42: divisão cronológica do conjunto gerado — treino com 1.920 viagens e teste nas 480 viagens finais. MAE **2,3220 min**, RMSE **2,9843 min**, R² **0,6793**. Tráfego, chuva, carga e atrasos foram simulados; não são dados de transporte público real.
+With seed 42, the model was evaluated chronologically: 1,920 trips for training and the final 480 trips for testing. The test MAE was 2.3220 minutes, the RMSE was 2.9843 minutes, and R² was 0.6793. Traffic, rain, passenger load, and delays were simulated, not collected from a real transit system.
 
-Limitação: dados e regras de geração simplificados; antes de uso real, substitua-os por dados com licença e proveniência adequadas e valide fora da amostra.
+## Limitations
+
+The generated trips cannot capture the complexity of a real transit network. Real use would require historical arrival data, route and schedule details, and evaluation across future service periods.
